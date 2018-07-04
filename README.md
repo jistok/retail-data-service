@@ -1,5 +1,4 @@
-# retail-data-service
-Data Services for the Retail Demo
+# Data Services for the Retail Demo
 
 ## GemFire / PCC Configuration
 
@@ -16,6 +15,22 @@ gfsh>configure pdx --disk-store=DEFAULT --auto-serializable-classes="io.pivotal.
 * Tell GemFire to use that system CLASSPATH value:
 ```
 gfsh>start server --name=server1 --server-port=40411 --include-system-classpath=true
+```
+
+## Build and Run (locally)
+
+```
+./mvnw clean package && java -jar ./target/data-service-0.0.1-SNAPSHOT.jar
+```
+
+## Build and Run (in PCF)
+
+**TODO**
+
+## Test
+
+```
+$ time for i in ./scripts/*.sh ; do echo "Running $i ..." && bash $i ; done
 ```
 
 ## GemFire Queries

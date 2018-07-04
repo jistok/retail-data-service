@@ -97,6 +97,11 @@ public class RetailEventController {
         }
         return rv;
     }
+    
+    @RequestMapping(method = RequestMethod.DELETE, value = "/{tweetId}")
+    public void deleteByTweetId(@PathVariable Long tweetId) {
+        repo.deleteById(tweetId);
+    }
 
 	private final static String TWITTER_DATE = "EEE MMM dd HH:mm:ss ZZZZZ yyyy";
 	private static Date getTwitterDate(String date) throws ParseException {
