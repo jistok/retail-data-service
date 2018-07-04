@@ -7,7 +7,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.pivotal.retail.dao.MaxTweetIdRepository;
 import io.pivotal.retail.dao.RetailEventRepository;
 import io.pivotal.retail.domain.RetailEvent;
 import io.pivotal.retail.util.JsonString;
@@ -36,8 +34,7 @@ public class RetailEventController {
 	public RetailEventController(RetailEventRepository repo) {
 		this.repo = repo;
 	}
-	
-    // Persist the JSON, pulling out certain fields for use as query (GQL) criteria.
+
     @RequestMapping(method = RequestMethod.PUT, value = "/event")
     void addJsonEvent(@RequestBody String jsonStr) throws Exception {
         JSONObject json = new JSONObject(jsonStr);
@@ -79,7 +76,6 @@ public class RetailEventController {
         repo.save(event);
     }
 
-    // Get the JSON for a given tweet ID
     @RequestMapping(method = RequestMethod.GET, value = "/{tweetId}")
     public String getEventFromTweetId(@PathVariable Long tweetId) {
         String jsonStr = null;
@@ -90,22 +86,14 @@ public class RetailEventController {
         return jsonStr;
     }
 
-    /**
-     * Get top N most recent tweets for given screen name
-     */
     @CrossOrigin()
     @RequestMapping(method = RequestMethod.GET, value = "/{screenName}/{topN}")
     public @ResponseBody List<JsonString> getMostRecentEvents(@PathVariable String screenName, @PathVariable int topN)
     {
         List<JsonString> rv = new ArrayList<>();
-        String gqlQuery = "select * from FOO where screenName = @screenName";
-        gqlQuery += " order by createdAt desc limit @topN";
-        /*
-        while (results.hasNext()) {
-            Entity ent = results.next();
-            rv.add(new JsonString(ent.getString("json")));
+        for (RetailEvent evt : repo.findByScreenName(screenName, topN)) {
+        	rv.add(new JsonString(evt.getJson()));
         }
-        */
         return rv;
     }
 
