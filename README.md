@@ -2,10 +2,11 @@
 
 ## GemFire / PCC Configuration
 
-* Extract the Spring Boot JAR, and append each of the JAR file full paths to the CLASSPATH environment variable, along with BOOT-INF/classes:
+* Extract the Spring Boot JAR, and set CLASSPATH based on its contents:
 ```
-$ export CLASSPATH="/path/to/classes:JAR_1:JAR_2:...:JAR_N"
+$ ./scripts/setup_gemfire_classpath.sh
 ```
+Run that `export CLASSPATH=...` within the shell used to start GemFire.
 
 * Ensure your domain classes are serializable by GemFire:
 ```
