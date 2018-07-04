@@ -39,6 +39,7 @@ public class RetailEventController {
     void addJsonEvent(@RequestBody String jsonStr) throws Exception {
         JSONObject json = new JSONObject(jsonStr);
         RetailEvent event = new RetailEvent();
+        event.setJson(jsonStr);
         Long id = json.getLong("id");
         event.setId(id);
         logger.info("addJsonEvent: key (tweet ID) = " + id);
