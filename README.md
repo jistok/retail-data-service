@@ -1,21 +1,20 @@
 # Data Services for the Retail Demo
 
+## Data Services Offered (REST endpoints / verbs)
+
+* `/tweetInfo/{userName}`
+
+
 ## GemFire / PCC Configuration
 
-* Extract the Spring Boot JAR, and set CLASSPATH based on its contents:
+* Set up GemFire to run in read serialized mode
 ```
-$ ./scripts/setup_gemfire_classpath.sh
-```
-Run that `export CLASSPATH=...` within the shell used to start GemFire.
-
-* Ensure your domain classes are serializable by GemFire:
-```
-gfsh>configure pdx --disk-store=DEFAULT --auto-serializable-classes="io.pivotal.retail.domain.*"
+gfsh>configure pdx --disk-store=DEFAULT --read-serialized=true
 ```
 
 * Tell GemFire to use that system CLASSPATH value:
 ```
-gfsh>start server --name=server1 --server-port=40411 --include-system-classpath=true
+gfsh>start server --name=server1 --server-port=0
 ```
 
 ## Build and Run (locally)
@@ -45,4 +44,8 @@ gfsh>query --query='SELECT r.screenName, r.id, r.json FROM /RetailEvent r'
 ```
 gfsh>remove --region=/RetailEvent --key=842479757170159616  --key-class=java.lang.Long
 ```
+
+## Credits / Acknowledgements
+
+Thanks for Mark Secrist for furnishing the code to use as a starting point for this, as well as ongoing dialog on this topic.
 

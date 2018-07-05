@@ -26,19 +26,19 @@ public class MaxTweetIdController {
 		this.repo = repo;
 	}
 
-	// Get the max. tweet ID for a given user
-	@RequestMapping(method = RequestMethod.GET, value = "/{userName}/maxTweetId")
-	public Long getMaxTweetIdForUser(@PathVariable String userName) {
-		MaxTweetId maxTweetId = getMaxTweetId(userName);
-		return maxTweetId.getMaxTweetId();
-	}
-
 	// Set the max. tweet ID for a given user
 	@RequestMapping(method = RequestMethod.PUT, value = "/{userName}")
 	public void setMaxTweetId(@PathVariable String userName, @RequestBody Long value) {
 		MaxTweetId maxTweetId = getMaxTweetId(userName);
 		maxTweetId.setMaxTweetId(value);
 		repo.save(maxTweetId); // SAVE THAT VALUE
+	}
+
+	// Get the max. tweet ID for a given user
+	@RequestMapping(method = RequestMethod.GET, value = "/{userName}/maxTweetId")
+	public Long getMaxTweetIdForUser(@PathVariable String userName) {
+		MaxTweetId maxTweetId = getMaxTweetId(userName);
+		return maxTweetId.getMaxTweetId();
 	}
 
 	// Get all { userID => maxTweetId } values
@@ -51,6 +51,12 @@ public class MaxTweetIdController {
 			rv.add(map);
 		}
 		return rv;
+	}
+
+	// Delete the data for the given user name (screen name)
+	@RequestMapping(method = RequestMethod.DELETE, value = "/{userName}")
+	public void deleteByTweetId(@PathVariable String userName) {
+		repo.deleteById(userName);
 	}
 
 	private MaxTweetId getMaxTweetId(String userName) {
