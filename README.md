@@ -15,18 +15,33 @@
 
 ## GemFire / PCC Configuration
 
+* PCC version: 1.4.0
+* GemFire version: 9.3.0
+
+## Build and Run (locally)
+
+* Start a locator
+```
+gfsh>start locator --name=locator1
+```
+
 * Set up GemFire to run in read serialized mode
 ```
 gfsh>configure pdx --disk-store=DEFAULT --read-serialized=true
 ```
 
-* Tell GemFire to use that system CLASSPATH value:
+* Start a server
 ```
 gfsh>start server --name=server1 --server-port=0
 ```
 
-## Build and Run (locally)
+* Create the two regions
+```
+gfsh>create region --name=RetailEvent --type=PARTITION_PERSISTENT_OVERFLOW
+gfsh>create region --name=MaxTweetId --type=PARTITION_PERSISTENT_OVERFLOW
+```
 
+* Build and start the Spring Boot app
 ```
 ./mvnw clean package && java -jar ./target/data-service-0.0.1-SNAPSHOT.jar
 ```
