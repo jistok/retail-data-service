@@ -41,6 +41,11 @@ gfsh>start server --name=server1 --server-port=0
 $ time for i in ./scripts/*.sh ; do echo "Running $i ..." && bash $i ; done
 ```
 
+## Migrate Data
+```
+$ ./scripts/data_migrator.py http://EXISTING_APP.apps.YOURPCF.com http://NEW_APP.apps.YOURPCF.com
+```
+
 ## GemFire Queries
 
 * Pull out the values:
