@@ -27,10 +27,21 @@ def storeJson(jsonStr):
   r = requests.put(dest + "/retailEvent/event", headers=headers, data=jsonStr)
   return r.status_code == 200
 
+# Store maxTweetId for screenName
+def setMaxTweetId(screenName, maxTweetId):
+  headers = {"Content-Type": "application/json"}
+  r = requests.put(dest + "/tweetInfo/" + screenName, headers=headers, data=str(maxTweetId))
+  if r.status_code != 200:
+    raise Exception("Failed to set maxTweetId for user %s" % screenName)
+
 # Start the migration
 for resp in getMaxTweetIds():
   screenName = (resp.keys())[0]
-  print "Screen name: %s" % screenName
+  maxTweetId = resp[screenName]
+  print "Screen name: %s, maxTweetId: %s" % (screenName, str(maxTweetId))
+  # MaxTweetID
+  setMaxTweetId(screenName, maxTweetId)
+  # RetailEvent
   r = requests.get(src + "/retailEvent/" + screenName + "/" + str(MAX_TWEETS_PER_USER))
   if r.status_code != 200:
     raise Exception("Failed to get tweets for user %s" % screenName)
