@@ -1,9 +1,17 @@
 # Data Services for the Retail Demo
 
-## Data Services Offered (REST endpoints / verbs)
+## Data Services Offered (see Test, below, for examples of using these endpoints)
 
-* `/tweetInfo/{userName}`
-
+| Endpoint | HTTP Verb | Types (if any) |
+| :---         |     :---:      | :--- |
+| `/tweetInfo/{userName}` | PUT | userName: String, tweetId: Long |
+| `/tweetInfo/{userName}/maxTweetId` | GET | userName: String |
+| `/tweetInfo/maxTweetIds` | GET | N/A |
+| `/tweetInfo/{userName}` | DELETE | userName: String |
+| `/retailEvent/event` | PUT | String (JSON) |
+| `/retailEvent/{tweetId}` | GET | Long |
+| `/retailEvent/{screenName}/{topN}` | GET | screenName: String, topN: int |
+| `/retailEvent/{tweetId}` | DELETE | tweetId: Long |
 
 ## GemFire / PCC Configuration
 
