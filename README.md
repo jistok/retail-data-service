@@ -25,20 +25,20 @@
 gfsh>start locator --name=locator1
 ```
 
-* Set up GemFire to run in read serialized mode
-```
-gfsh>configure pdx --disk-store=DEFAULT --read-serialized=true
-```
-
 * Start a server
 ```
 gfsh>start server --name=server1 --server-port=0
 ```
 
+* Set up GemFire to run in read serialized mode
+```
+gfsh>configure pdx --read-serialized=true
+```
+
 * Create the two regions
 ```
-gfsh>create region --name=RetailEvent --type=PARTITION_PERSISTENT_OVERFLOW
-gfsh>create region --name=MaxTweetId --type=PARTITION_PERSISTENT_OVERFLOW
+gfsh>create region --name=RetailEvent --type=REPLICATE
+gfsh>create region --name=MaxTweetId --type=REPLICATE
 ```
 
 * Build and start the Spring Boot app
@@ -53,7 +53,7 @@ gfsh>create region --name=MaxTweetId --type=PARTITION_PERSISTENT_OVERFLOW
 ## Test
 
 ```
-$ time for i in ./scripts/*.sh ; do echo "Running $i ..." && bash $i ; done
+$ time for i in ./scripts/[0-9]*.sh ; do echo "Running $i ..." && bash $i ; done
 ```
 
 ## Migrate Data
