@@ -58,6 +58,7 @@
 			</exclusions>
 		</dependency>
 	</dependencies>
+
 	<repositories>
 		<repository>
 			<id>SpringRelease</id>

@@ -3,5 +3,4 @@ applications:
 - name: retail-data-service
   path: target/data-service-0.0.1-SNAPSHOT.jar
   buildpack: java_buildpack_offline
-  services:
-    - retail-cache
+

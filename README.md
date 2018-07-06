@@ -21,37 +21,58 @@
 ## Build and Run (locally)
 
 * Start a locator
-```
-gfsh>start locator --name=locator1
-```
+  ```
+  gfsh>start locator --name=locator1
+  ```
 
 * Start a server
-```
-gfsh>start server --name=server1 --server-port=0
-```
+  ```
+  gfsh>start server --name=server1 --server-port=0
+  ```
 
 * Set up GemFire to run in read serialized mode
-```
-gfsh>configure pdx --read-serialized=true
-```
+  ```
+  gfsh>configure pdx --read-serialized=true
+  ```
 
 * Create the two regions
-```
-gfsh>create region --name=RetailEvent --type=REPLICATE
-gfsh>create region --name=MaxTweetId --type=REPLICATE
-```
+  ```
+  gfsh>create region --name=RetailEvent --type=REPLICATE
+  gfsh>create region --name=MaxTweetId --type=REPLICATE
+  ```
 
 * Build and start the Spring Boot app
-```
-./mvnw clean package && java -jar ./target/data-service-0.0.1-SNAPSHOT.jar
-```
+  ```
+  $ ./mvnw clean package && java -jar ./target/data-service-0.0.1-SNAPSHOT.jar
+  ```
 
 ## Build and Run (in PCF)
 
-**TODO**
+* Build and push the app (without starting it)
+  ```
+  $ ./mvnw clean package
+  $ cf push --no-start
+  ```
+* Create an instance of PCC
+Refer to [this reference](https://docs.pivotal.io/p-cloud-cache/1-2/developer.html#bind-service)
+* Access that instance using `gfsh`
+* Create the regions (as above)
+* Bind this instance to your app
+  ```
+  $ TBD ...
+  ```
+* Get the `VCAP_SERVICES` values
+  ```
+  $ cf env retail-data-service
+  ```
+* Edit `src/main/resources/application.properties`, filling in values for all three properties from those found within `VCAP_SERVICES`
+* Rebuild and push the app
+  ```
+  $ ./mvnw clean package && cf push
+  ```
+* _Cross your fingers ..._
 
 ## Test
-
 ```
 $ time for i in ./scripts/[0-9]*.sh ; do echo "Running $i ..." && bash $i ; done
 ```
@@ -64,14 +85,14 @@ $ ./scripts/data_migrator.py http://EXISTING_APP.apps.YOURPCF.com http://NEW_APP
 ## GemFire Queries
 
 * Pull out the values:
-```
-gfsh>query --query='SELECT r.screenName, r.id, r.json FROM /RetailEvent r'
-```
+  ```
+  gfsh>query --query='SELECT r.screenName, r.id, r.json FROM /RetailEvent r'
+  ```
 
 * Delete an item by key, making sure to specify the Java class for this key:
-```
-gfsh>remove --region=/RetailEvent --key=842479757170159616  --key-class=java.lang.Long
-```
+  ```
+  gfsh>remove --region=/RetailEvent --key=842479757170159616  --key-class=java.lang.Long
+  ```
 
 ## Credits / Acknowledgements
 
