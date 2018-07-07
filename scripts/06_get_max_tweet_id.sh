@@ -1,6 +1,6 @@
 #!/bin/bash
 
-user="someuser"
+. $( dirname $0 )/header.sh
 
-curl -X GET http://localhost:8080/tweetInfo/$user/maxTweetId
+curl -X GET $URL/tweetInfo/someuser/maxTweetId
 

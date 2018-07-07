@@ -1,7 +1,7 @@
 #!/bin/bash
 
-user="someuser"
-endpoint="http://localhost:8080/tweetInfo"
+. $( dirname $0 )/header.sh
 
-time curl -X DELETE $endpoint/$user
+user="someuser"
+time curl -X DELETE $URL/tweetInfo/$user
 

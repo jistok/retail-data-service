@@ -1,4 +1,6 @@
 #!/bin/bash
 
-curl -X GET http://localhost:8080/tweetInfo/maxTweetIds
+. $( dirname $0 )/header.sh
+
+curl -X GET $URL/tweetInfo/maxTweetIds
 

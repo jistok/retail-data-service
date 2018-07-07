@@ -1,5 +1,6 @@
 #!/bin/bash
 
+. $( dirname $0 )/header.sh
 
-time curl http://localhost:8080/retailEvent/miapisjef/10
+time curl $URL/retailEvent/miapisjef/10
 

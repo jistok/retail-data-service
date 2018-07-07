@@ -53,27 +53,48 @@
   $ ./mvnw clean package
   $ cf push --no-start
   ```
-* Create an instance of PCC
-Refer to [this reference](https://docs.pivotal.io/p-cloud-cache/1-2/developer.html#bind-service)
-* Access that instance using `gfsh`
+* Create an instance of PCC ([reference](https://docs.pivotal.io/p-cloud-cache/1-2/developer.html#bind-service))
+  ```
+  cf create-service p-cloudcache small pcc-retail
+  ```
+* After that has completed (a couple of minutes), create and then access a service key for the PCC instance
+  ```
+  cf create-service-key pcc-retail pcc-retail-key
+  cf service-key pcc-retail pcc-retail-key
+  ```
+* Using the `urls` value provided, access that instance using `gfsh` (here, I'm using HTTP instead of HTTPS)
+  ```
+  [mgoddard:bin]$ ./gfsh
+      _________________________     __
+     / _____/ ______/ ______/ /____/ /
+    / /  __/ /___  /_____  / _____  /
+   / /__/ / ____/  _____/ / /    / /
+  /______/_/      /______/_/    /_/    9.3.0
+
+  Monitor and Manage Pivotal GemFire
+  gfsh>connect --use-http=true --url=http://cloudcache-89247a3d-3781-428d-99b7-b8a462be7ab5.sys.my-pcf.com/gemfire/v1
+  user: cluster_operator_Au2BzlncveXJQHNGZlkiVP
+  password: **********************
+  Successfully connected to: GemFire Manager HTTP service @ org.apache.geode.management.internal.web.http.support.HttpRequester@117354b6
+  ```
 * Create the regions (as above)
 * Bind this instance to your app
   ```
-  $ TBD ...
+  cf bind-service retail-data-service pcc-retail
   ```
 * Get the `VCAP_SERVICES` values
   ```
   $ cf env retail-data-service
   ```
 * Edit `src/main/resources/application.properties`, filling in values for all three properties from those found within `VCAP_SERVICES`
+* FIXME: do the same for `src/main/resources/application-cloud.properties`
 * Rebuild and push the app
   ```
   $ ./mvnw clean package && cf push
   ```
-* _Cross your fingers ..._
-
 ## Test
 ```
+$ export URL=http://retail-data-service.apps.my-pcf.com
 $ time for i in ./scripts/[0-9]*.sh ; do echo "Running $i ..." && bash $i ; done
 ```
 

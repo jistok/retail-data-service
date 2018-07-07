@@ -1,7 +1,7 @@
 #!/bin/bash
 
-id="867912355610583041"
-endpoint="http://localhost:8080/retailEvent"
+. $( dirname $0 )/header.sh
 
-time curl -X DELETE $endpoint/$id
+id="867912355610583041"
+time curl -X DELETE $URL/retailEvent/$id
 
