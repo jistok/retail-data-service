@@ -115,6 +115,13 @@ $ ./scripts/data_migrator.py http://EXISTING_APP.apps.YOURPCF.com http://NEW_APP
   gfsh>remove --region=/RetailEvent --key=842479757170159616  --key-class=java.lang.Long
   ```
 
+## Ideas for Extensions
+
+* Write new data elements into Kafka topics, say `retail_event` and `tweet_info`, then have Greenplum consume these and run analytical queries.
+* Async write-behind into Google Cloud Storage
+* GemFire-Greenplum connector
+* GemFire WAN replication for multi-site configuration
+
 ## Credits / Acknowledgements
 
 Thanks for Mark Secrist for furnishing the code to use as a starting point for this, as well as ongoing dialog on this topic.
