@@ -37,7 +37,7 @@
 
 * Create the two regions
   ```
-  gfsh>create region --name=RetailEvent --type=REPLICATE
+  gfsh>create region --name=RetailEvent --type=PARTITION --redundant-copies=1
   gfsh>create region --name=MaxTweetId --type=REPLICATE
   ```
 
