@@ -2,5 +2,5 @@
 
 . $( dirname $0 )/header.sh
 
-time curl $URL/retailEvent/miapisjef/10
+time curl -k $URL/retailEvent/miapisjef/10
 

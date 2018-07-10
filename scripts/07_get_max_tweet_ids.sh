@@ -2,5 +2,5 @@
 
 . $( dirname $0 )/header.sh
 
-curl -X GET $URL/tweetInfo/maxTweetIds
+curl -k -X GET $URL/tweetInfo/maxTweetIds
 
