@@ -57,6 +57,11 @@
   ```
   cf create-service p-cloudcache small pcc-retail
   ```
+* Edit your `manifest.yml` file, setting `PCC_INSTANCE_NAME` to the **name** of your service instance; e.g.
+  ```
+  PCC_INSTANCE_NAME: pcc-retail
+  ```
+  This will be picked up when you push the app and used to inject the username, password, and locator addresses.
 * After that has completed (a couple of minutes), create and then access a service key for the PCC instance
   ```
   cf create-service-key pcc-retail pcc-retail-key
