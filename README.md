@@ -87,9 +87,9 @@
   ```
   cf bind-service retail-data-service pcc-retail
   ```
-* Finally, push the app
+* Finally, start the app
   ```
-  $ cf push
+  $ cf start retail-data-service
   ```
 ## Test
 ```
