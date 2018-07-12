@@ -87,15 +87,9 @@
   ```
   cf bind-service retail-data-service pcc-retail
   ```
-* Get the `VCAP_SERVICES` values
+* Finally, push the app
   ```
-  $ cf env retail-data-service
-  ```
-* Edit `src/main/resources/application.properties`, filling in values for all three properties from those found within `VCAP_SERVICES`
-* FIXME: do the same for `src/main/resources/application-cloud.properties`
-* Rebuild and push the app
-  ```
-  $ ./mvnw clean package && cf push
+  $ cf push
   ```
 ## Test
 ```
