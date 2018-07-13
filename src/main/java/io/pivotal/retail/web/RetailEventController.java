@@ -57,12 +57,18 @@ public class RetailEventController {
         event.setScreenName(screenName);
         String location = json.getJSONObject("user").getString("location");
         event.setLocation(location);
-        Double sentiment = json.getJSONObject("sentiment").getDouble("score");
+        Double sentiment = 0.0;
+        if (json.has("sentiment")) {
+        	sentiment = json.getJSONObject("sentiment").getDouble("score");
+        }
         event.setSentiment(sentiment);
         logger.info("addJsonEvent: (screen_name = " + screenName + ", location = " + location + ", sentiment = " + sentiment + ")");
 
         // offer_text and top_term are only present if make_offer is true, but check anyhow
-        Boolean makeOffer = json.getBoolean("make_offer");
+        Boolean makeOffer = false;
+        if (json.has("make_offer")) {
+        	json.getBoolean("make_offer");
+        }
         event.setMakeOffer(makeOffer);
         String offerText = "";
         if (makeOffer && json.has("offer_text")) {
