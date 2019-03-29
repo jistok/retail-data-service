@@ -9,7 +9,7 @@ import io.pivotal.retail.domain.RetailEvent;
 
 public interface RetailEventRepository extends CrudRepository<RetailEvent, Long> {
 
-	@Query("SELECT * FROM RetailEvent r WHERE r.screenName = $1 ORDER BY r.createdAt DESC LIMIT $2 ")
+	@Query(value = "SELECT * FROM RetailEvent r WHERE r.screenName = ?1 ORDER BY r.createdAt DESC LIMIT ?2", nativeQuery = true)
 	List<RetailEvent> findByScreenName(String screenName, int limit);
-	
+
 }
