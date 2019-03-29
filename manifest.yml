@@ -1,8 +1,6 @@
 ---
 applications:
 - name: retail-data-service
-  path: target/data-service-0.0.1-SNAPSHOT.jar
-  buildpack: java_buildpack_offline
-  env:
-    PCC_INSTANCE_NAME: pcc-retail
-
+  path: ./build/libs/data-service-0.0.1-SNAPSHOT.jar
+  services:
+      - mysql

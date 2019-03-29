@@ -3,12 +3,11 @@ package io.pivotal.retail.domain;
 import java.io.Serializable;
 import java.util.Date;
 
-import org.apache.geode.cache.client.ClientRegionShortcut;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.gemfire.mapping.annotation.ClientRegion;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
-@ClientRegion(name = "RetailEvent", shortcut = ClientRegionShortcut.CACHING_PROXY)
-public class RetailEvent implements Serializable {
+@Entity
+public class RetailEvent {
 
 	@Id
 	private Long id;
@@ -21,8 +20,6 @@ public class RetailEvent implements Serializable {
 	private String text;
 	private String topTerm;
 	private String json;
-	
-	private static final long serialVersionUID = -1520076526636080708L;
 	
 	public RetailEvent() {
 		super();

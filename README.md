@@ -13,11 +13,6 @@
 | `/retailEvent/{screenName}/{topN}` | GET | screenName: String, topN: int |
 | `/retailEvent/{tweetId}` | DELETE | tweetId: Long |
 
-## GemFire / PCC Configuration
-
-* PCC version: 1.4.0
-* GemFire version: 9.3.0
-
 ## Build and Run (locally)
 
 * Start a locator
@@ -28,17 +23,6 @@
 * Start a server
   ```
   gfsh>start server --name=server1 --server-port=0
-  ```
-
-* Set up GemFire to run in read serialized mode
-  ```
-  gfsh>configure pdx --read-serialized=true
-  ```
-
-* Create the two regions
-  ```
-  gfsh>create region --name=RetailEvent --type=PARTITION --redundant-copies=1
-  gfsh>create region --name=MaxTweetId --type=REPLICATE
   ```
 
 * Build and start the Spring Boot app

@@ -10,7 +10,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages = "io.pivotal.retail")
+//@ComponentScan(basePackages = "io.pivotal.retail")
+@ComponentScan({"io.pivotal.retail.dao"})
 public class RetailDataApplication extends SpringBootServletInitializer {
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {

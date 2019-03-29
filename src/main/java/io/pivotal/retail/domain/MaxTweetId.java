@@ -1,19 +1,14 @@
 package io.pivotal.retail.domain;
 
-import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
-import org.apache.geode.cache.client.ClientRegionShortcut;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.gemfire.mapping.annotation.ClientRegion;
-
-@ClientRegion(name = "MaxTweetId", shortcut = ClientRegionShortcut.CACHING_PROXY)
-public class MaxTweetId implements Serializable {
+@Entity
+public class MaxTweetId {
 
 	@Id
 	private String userName;
 	private Long maxTweetId;
-	
-	private static final long serialVersionUID = 2889380026043978427L;
 	
 	public MaxTweetId() {
 		super();

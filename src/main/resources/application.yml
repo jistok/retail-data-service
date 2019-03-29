@@ -1,0 +1,9 @@
+---
+spring:
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost/pong_matcher_spring_development
+    username: springpong
+    password: springpong
+  jpa:
+    hibernate.ddl-auto: create
