@@ -1,6 +1,5 @@
 package io.pivotal.retail.domain;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -20,7 +19,7 @@ public class RetailEvent {
 	private String text;
 	private String topTerm;
 	private String json;
-	
+
 	public RetailEvent() {
 		super();
 	}
