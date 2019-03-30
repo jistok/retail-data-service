@@ -1,5 +1,6 @@
 package io.pivotal.retail.domain;
 
+import javax.persistence.Column;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -18,7 +19,8 @@ public class RetailEvent {
 	private double sentiment;
 	private String text;
 	private String topTerm;
-	private String json;
+	@Column(name="json", columnDefinition="TEXT")
+	private String json; // Must be larger than VARCHAR(255)
 
 	public RetailEvent() {
 		super();

@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan({"io.pivotal.retail.dao"})
+@ComponentScan({"io.pivotal.retail.dao", "io.pivotal.retail.web"})
 public class RetailDataApplication {
 
     public static void main(String[] args) {

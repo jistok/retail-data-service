@@ -13,23 +13,6 @@
 | `/retailEvent/{screenName}/{topN}` | GET | screenName: String, topN: int |
 | `/retailEvent/{tweetId}` | DELETE | tweetId: Long |
 
-## Build and Run (locally)
-
-* Start a locator
-  ```
-  gfsh>start locator --name=locator1
-  ```
-
-* Start a server
-  ```
-  gfsh>start server --name=server1 --server-port=0
-  ```
-
-* Build and start the Spring Boot app
-  ```
-  $ ./mvnw clean package && java -jar ./target/data-service-0.0.1-SNAPSHOT.jar
-  ```
-
 ## Build and Run (in PCF)
 
 * Build and push the app (without starting it)
@@ -110,4 +93,3 @@ $ ./scripts/data_migrator.py http://EXISTING_APP.apps.YOURPCF.com http://NEW_APP
 ## Credits / Acknowledgements
 
 Thanks for Mark Secrist for furnishing the code to use as a starting point for this, as well as ongoing dialog on this topic.
-
