@@ -2,9 +2,9 @@
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost/pong_matcher_spring_development
-    username: springpong
-    password: springpong
+    url: jdbc:mysql://localhost/some_db_name
+    username: some_user
+    password: some_password
   jpa:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     hibernate.ddl-auto: update
