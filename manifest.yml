@@ -1,6 +1,6 @@
 ---
 applications:
-- name: retail-data-service
+- name: persistence
   path: ./build/libs/data-service-0.0.1-SNAPSHOT.jar
   services:
       - mysql
